@@ -1,9 +1,6 @@
 package com.blog.aadhi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +13,8 @@ public class registerModel
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO-INCREMENT
+    @ManyToOne
+    @JoinColumn(name = "id")
     private Long id;
     private String first_name;
     private String last_name;
