@@ -21,6 +21,9 @@ public class postsModel {
     private String content;
     private String tags;
 
+    @Column(nullable = false)
+    private String description;
+
     @Lob
     @Column(columnDefinition = "LONGBLOB", nullable = true)
     private byte[] image;
