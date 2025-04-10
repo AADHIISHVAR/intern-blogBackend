@@ -1,22 +1,32 @@
 package com.blog.aadhi.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import java.util.ArrayList;
+import java.util.List;
 
-public class postsModel
-{
-    //id, title, content, author_id, created_at, updated_at
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class postsModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO-INCREMENT
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String content;
-    // One user -> many posts
+    private String tags;
 
-    // Many posts belong to one login
+    @Lob
+    @Column(columnDefinition = "LONGBLOB", nullable = true)
+    private byte[] image;
+
     @ManyToOne
-    @JoinColumn(name = "login_id")  // foreign key in post table
-    private loginModel login;
-
-    private String created_at;
-    private String updated_at;
+    @JoinColumn(nullable = false) // FK to registerModel
+    private registerModel user_id;
 }
+

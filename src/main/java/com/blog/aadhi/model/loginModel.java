@@ -21,6 +21,6 @@ public class loginModel
     private String username_or_email;
     private String password;
 
-    @OneToMany(mappedBy = "login", cascade = CascadeType.ALL)
-    private List<postsModel> posts = new ArrayList<>();
+//    @OneToMany(mappedBy = "login", cascade = CascadeType.ALL)
+//    private List<postsModel> posts = new ArrayList<>();
 }
