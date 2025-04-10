@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -21,7 +23,9 @@ public class postsController
         this.service = service;
     }
 
-    @PostMapping("register")
+
+
+    @PostMapping("/register")
     public ResponseEntity<String> entryUser(@RequestBody registerModel user) {
         if (user == null) {
             return ResponseEntity.badRequest().body("User data is missing");
@@ -31,19 +35,28 @@ public class postsController
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }
 
-    @PostMapping("login")
+
+    @PostMapping("/login")
     public ResponseEntity<String> checkLogin(@RequestBody loginModel login) {
         if (login == null) {
             return ResponseEntity.badRequest().body("Login data is missing");
         }
 
-        boolean isValid = service.checkLogin(login);
+        registerModel user = service.checkLogin(login);
 
-        if (isValid) {
-            return ResponseEntity.ok("Login successful");
+        if (user != null) {
+            return ResponseEntity.ok("Login successful. Your ID is: " + user.getId());
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
+
+    @GetMapping("/posts")
+    public ResponseEntity<List<postsModel>> getAllPosts()
+    {
+        return new ResponseEntity<>(service.getAllPosts(),HttpStatus.OK);
+    }
+
+
 
 }
