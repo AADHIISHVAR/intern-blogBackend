@@ -35,6 +35,7 @@ public class postsController
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }
 
+    long userId=0;
 
     @PostMapping("/login")
     public ResponseEntity<String> checkLogin(@RequestBody loginModel login) {
@@ -44,9 +45,14 @@ public class postsController
 
         registerModel user = service.checkLogin(login);
 
-        if (user != null) {
+        if (user != null)
+        {
+            userId = user.getId();
             return ResponseEntity.ok("Login successful. Your ID is: " + user.getId());
-        } else {
+
+        }
+        else
+        {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
@@ -55,6 +61,12 @@ public class postsController
     public ResponseEntity<List<postsModel>> getAllPosts()
     {
         return new ResponseEntity<>(service.getAllPosts(),HttpStatus.OK);
+    }
+
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<List<registerModel>> showProfile(int id)
+    {
+        return ResponseEntity.ok(service.showProfile(id)); //return new ResponseEntity<>(service.showProfile(id), HttpStatus.OK);
     }
 
 

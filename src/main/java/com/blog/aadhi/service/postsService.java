@@ -40,4 +40,8 @@ public class postsService
         return postRepo.findAll();
     }
 
+    public List<registerModel> showProfile(int id)
+    {
+        return regRepo.findAll();
+    }
 }

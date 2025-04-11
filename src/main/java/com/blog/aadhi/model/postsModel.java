@@ -31,5 +31,11 @@ public class postsModel {
     @ManyToOne
     @JoinColumn(nullable = false) // FK to registerModel
     private registerModel user_id;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private commentsModel comment;
+
+
 }
 
