@@ -32,7 +32,7 @@ public class postsController
         }
 
         service.entryNewUser(user);  // save user, no return needed
-        return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
+        return ResponseEntity.ok("Registered sucessfully");
     }
 
 

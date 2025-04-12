@@ -6,6 +6,7 @@ import com.blog.aadhi.model.registerModel;
 import com.blog.aadhi.repo.postsRepo;
 import com.blog.aadhi.repo.registerRepo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,12 +22,12 @@ public class postsService
         this.postRepo = postRepo;
     }
 
-    public registerModel entryNewUser(registerModel user)
-    {
-        System.out.println("entered teh show all service  layer");
-
+    @Transactional
+    public registerModel entryNewUser(registerModel user) {
+        System.out.println("Entered the show all service layer");
         return regRepo.save(user);
     }
+
 
     public registerModel checkLogin(String UsernameOrEmail,String pass)
     {
