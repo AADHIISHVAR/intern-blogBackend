@@ -22,7 +22,7 @@ public class postsModel {
     private String description;
 
     @Lob
-    @Column(columnDefinition = "LONGBLOB", nullable = true)
+    @Column(nullable = true)
     private byte[] image;
 
     @ManyToOne
