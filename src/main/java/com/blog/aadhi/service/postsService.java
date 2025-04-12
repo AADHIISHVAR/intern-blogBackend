@@ -28,12 +28,11 @@ public class postsService
         return regRepo.save(user);
     }
 
-    public registerModel checkLogin(loginModel login) {
-        return regRepo.findByUsernameOrEmailAndPassword(
-                login.getUsername_or_email(),
-                login.getPassword()
-        );
+    public registerModel checkLogin(String UsernameOrEmail,String pass)
+    {
+        return regRepo.findByUsernameOrEmailAndPassword(UsernameOrEmail,pass);
     }
+
 
     public List<postsModel> getAllPosts()
     {

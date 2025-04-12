@@ -13,7 +13,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class registerModel {
+public class registerModel
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -6,7 +6,6 @@ import com.blog.aadhi.model.registerModel;
 import com.blog.aadhi.service.postsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +17,7 @@ import java.util.List;
 public class postsController
 {
     private final postsService service;
+
 
     public postsController(postsService service) {
         this.service = service;
@@ -35,7 +35,6 @@ public class postsController
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
     }
 
-    long userId=0;
 
     @PostMapping("/login")
     public ResponseEntity<String> checkLogin(@RequestBody loginModel login) {
@@ -43,13 +42,13 @@ public class postsController
             return ResponseEntity.badRequest().body("Login data is missing");
         }
 
-        registerModel user = service.checkLogin(login);
+        String UsernameOrEmail = login.getUsernameOrEmail();
+        String pass = login.getPassword();
 
+        registerModel user = service.checkLogin(UsernameOrEmail,pass);
         if (user != null)
         {
-            userId = user.getId();
-            return ResponseEntity.ok("Login successful. Your ID is: " + user.getId());
-
+            return ResponseEntity.ok("Login successful");// Your ID is: " + user.getId()
         }
         else
         {
