@@ -17,6 +17,7 @@ public class postsService
     private final postsRepo postRepo;
 
 
+
     public postsService(registerRepo repo, postsRepo postRepo) {
         this.regRepo = repo;
         this.postRepo = postRepo;
@@ -44,4 +45,10 @@ public class postsService
     {
         return regRepo.findAll();
     }
+
+    public postsModel addpost(postsModel post) {
+        System.out.println("entered service layer to save the post");
+        return postRepo.save(post); // NOT saveAll
+    }
+
 }

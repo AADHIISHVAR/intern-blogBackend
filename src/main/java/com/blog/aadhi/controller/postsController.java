@@ -62,11 +62,21 @@ public class postsController
         return new ResponseEntity<>(service.getAllPosts(),HttpStatus.OK);
     }
 
+    @PostMapping("/createPost")
+    public ResponseEntity<String> addPost(@RequestBody postsModel post) {
+        service.addpost(post);
+        return ResponseEntity.ok("Post created successfully");
+    }
+
+
+
     @GetMapping("/profile/{id}")
     public ResponseEntity<List<registerModel>> showProfile(int id)
     {
         return ResponseEntity.ok(service.showProfile(id)); //return new ResponseEntity<>(service.showProfile(id), HttpStatus.OK);
     }
+
+
 
 
 
