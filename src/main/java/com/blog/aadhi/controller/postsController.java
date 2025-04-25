@@ -84,17 +84,19 @@ public class postsController
     }
 
 
-//Redunent
-//    @GetMapping("/profile/{id}")
-//    public ResponseEntity<List<registerModel>> showProfile(int id)
-//    {
-//        return ResponseEntity.ok(service.showProfile(id)); //return new ResponseEntity<>(service.showProfile(id), HttpStatus.OK);
-//    }
-//    @GetMapping("/profile/{id}")
-//    public ResponseEntity<List<postsModel>> getPostById(@PathVariable Long postId)
-//    {
-//        return ResponseEntity.ok(service.getPostById(postId));
-//
-//    }
+
+
+//Redundant
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<List<registerModel>> showProfile(int id)
+    {
+        return ResponseEntity.ok(service.showProfile(id)); //return new ResponseEntity<>(service.showProfile(id), HttpStatus.OK);
+    }
+    @GetMapping("/profile/{id}")
+    public ResponseEntity<List<postsModel>> getPostById(@PathVariable Long postId)
+    {
+        return ResponseEntity.ok(service.getPostById(postId));
+
+    }
 
 }

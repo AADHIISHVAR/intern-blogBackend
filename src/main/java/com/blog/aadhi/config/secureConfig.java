@@ -39,17 +39,20 @@ public class secureConfig
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("login","register").permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login", "/register").permitAll() // no auth required here
+                        .anyRequest().authenticated() // other URLs need authentication
+                )
                 .formLogin(form -> form
-                        .defaultSuccessUrl("/stud", true) // Adjust as needed
+                        .loginPage("/login") // optional: custom login page mapping
+                        .defaultSuccessUrl("/posts", true)
                 )
                 .httpBasic(Customizer.withDefaults());
-
-        // Comment out for form-based login
-        // http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        System.out.println("no auth for register and login ");
 
         return http.build();
     }
+
 
 
     @Bean
@@ -60,6 +63,7 @@ public class secureConfig
 //        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
         provider.setPasswordEncoder(new BCryptPasswordEncoder(12));
         provider.setUserDetailsService(userDetailsService);
+        System.out.println("trying to hash password");
 
         return provider;
     }

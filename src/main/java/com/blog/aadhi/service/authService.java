@@ -23,9 +23,6 @@ public class authService
     @Autowired
     JWTService jwtService;
 
-    @Autowired
-    loginModel loginModel;
-
     private BCryptPasswordEncoder encode = new BCryptPasswordEncoder(12);
 
     public registerModel registerUser(registerModel user)
