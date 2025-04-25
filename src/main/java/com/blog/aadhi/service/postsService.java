@@ -7,6 +7,7 @@ import com.blog.aadhi.repo.postsRepo;
 import com.blog.aadhi.repo.registerRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -41,14 +42,19 @@ public class postsService
         return postRepo.findAll();
     }
 
-    public List<registerModel> showProfile(int id)
-    {
-        return regRepo.findAll();
-    }
+//    public List<registerModel> showProfile(int id)
+//    {
+//        return regRepo.findAll();
+//    }
 
     public postsModel addpost(postsModel post) {
         System.out.println("entered service layer to save the post");
         return postRepo.save(post); // NOT saveAll
     }
 
+//    public List<postsModel> getPostById(Long postId)
+//    {
+//        return postRepo.findAllById(postId);
+//        return null;
+//    }
 }

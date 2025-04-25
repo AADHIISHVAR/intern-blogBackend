@@ -11,6 +11,9 @@ public interface registerRepo extends JpaRepository<registerModel, Long>
     @Query("SELECT r FROM registerModel r WHERE (r.email = ?1 OR r.username = ?1) AND r.password = ?2")
     registerModel findByUsernameOrEmailAndPassword(String usernameOrEmail, String password);
 
+    registerModel findByUsername(String username);
+
+
 //    @Query("SELECT r FORM registerModel  WHERE r.email = ?1 OR r.username = ?1 AND r.password = ?2")
 //    registerModel findId(String email, String password);
 
